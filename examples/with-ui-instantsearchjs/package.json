@@ -8,9 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@searchkit/instantsearch-client": "*",
     "instantsearch.js": "^4.46.0",
-    "searchkit": "*",
-    "@searchkit/instantsearch-client": "*"
+    "searchkit": "*"
   },
   "devDependencies": {
     "typescript": "^4.9.3",

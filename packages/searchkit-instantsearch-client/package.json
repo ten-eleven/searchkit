@@ -44,8 +44,8 @@
     "node-fetch": "^2.6.6",
     "ts-jest": "29.0.3",
     "tsconfig": "*",
-    "typescript": "^4.9.5",
-    "tsup": "^6.3.0"
+    "tsup": "^6.3.0",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "searchkit": "^4.13.0"

@@ -37,7 +37,7 @@
     "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
-    "instantsearch.js": "^4.55.0",
-    "@types/lodash.debounce": "^4.0.7"
+    "@types/lodash.debounce": "^4.0.7",
+    "instantsearch.js": "^4.55.0"
   }
 }

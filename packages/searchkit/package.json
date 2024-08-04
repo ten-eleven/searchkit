@@ -47,13 +47,13 @@
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "jest": "29.1.2",
+    "jest-environment-jsdom": "^29.5.0",
     "nock": "^14.0.0-beta.4",
     "node-fetch": "^2.6.6",
     "ts-jest": "29.0.3",
     "tsconfig": "*",
     "tsup": "^6.3.0",
-    "typescript": "^4.9.5",
-    "jest-environment-jsdom": "^29.5.0"
+    "typescript": "^4.9.5"
   },
   "publishConfig": {
     "access": "public"

@@ -8,10 +8,10 @@
     "electronics": "ts-node ./electronics-ecommerce/index.ts"
   },
   "devDependencies": {
-    "@types/node": "^16.11.6",
     "@elastic/elasticsearch": "^8.6.0",
+    "@faker-js/faker": "^7.6.0",
+    "@types/node": "^16.11.6",
     "ts-node": "^10.2.1",
-    "typescript": "^4.9.5",
-    "@faker-js/faker": "^7.6.0"
-  } 
+    "typescript": "^4.9.5"
+  }
 }
