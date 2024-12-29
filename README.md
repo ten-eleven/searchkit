@@ -10,13 +10,13 @@ Works with Javascript, React, Vue, Angular, and more.
 
 ![Alt Text](apps/web/public/overview.gif)
 
-Searchkit provides a Search UI for Elasticsearch or Opensearch. With Searchkit, you can use Instantsearch components like Searchbox, refinement filters and results (and many more!) to build a search experience.
+Searchkit provides a Search UI for Elasticsearch or OpenSearch. With Searchkit, you can use InstantSearch components like Searchbox, refinement filters and results (and many more!) to build a search experience.
 
 Searchkit is great for anyone who want to build a search experience quickly.
 
-**Searchkit simplifies Search UI with Elasticsearch:**
+**Searchkit simplifies Search UI with Elasticsearch or OpenSearch:**
   - UI Search Components for React, Vue, Angular, and more
-  - Searchkit Node API proxies Elasticsearch requests from the browser.
+  - Searchkit Node API proxies Elasticsearch requests from the browser
   - Ability to use Elasticsearch Query DSL for advanced queries
 
 ## Searchkit AI Bot
@@ -59,14 +59,18 @@ Searchkit is great for anyone who want to build a search experience quickly.
 * [Searchkit with Express.js](https://www.searchkit.co/docs/proxy-elasticsearch/with-express-js)
 
 ## Video Tutorials
-* [Searchkit Intro Video Tutorial with Instantsearch.js](https://www.youtube.com/watch?v=R6iYpEuCdVs)
+* [Searchkit Intro Video Tutorial with InstantSearch.js](https://www.youtube.com/watch?v=R6iYpEuCdVs)
 * [Searchkit Node API Video Tutorial](https://www.youtube.com/watch?v=8ztvn1-VZ_U)
 
 Or checkout our [documentation](https://searchkit.co/docs) for more examples.
 
 ## Installation
 
-Either install via npm or yarn
+Either install via yarn or npm:
+
+```bash
+yarn add searchkit @searchkit/api @searchkit/instantsearch-client`
+```
 
 ```bash
 npm install searchkit @searchkit/api @searchkit/instantsearch-client
@@ -80,7 +84,7 @@ or via CDN
 <script src="https://cdn.jsdelivr.net/npm/searchkit@latest"></script>
 ```
 
-## Setup Elasticsearch
+## Setup Elasticsearch or OpenSearch
 
 Searchkit requires Elasticsearch 7.0 or higher or Opensearch 2.4 or higher. 
 
@@ -92,7 +96,7 @@ docker network create elastic
 docker run --name elasticsearch --net elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "xpack.security.enabled=false" -e http.cors.enabled=true -e "http.cors.allow-origin='*'" -e http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization -e http.cors.allow-credentials=true -e network.publish_host=localhost -e xpack.security.enabled=false docker.elastic.co/elasticsearch/elasticsearch:8.6.2
 ```
 
-then lets add an index and some data
+Once Elasticsearch is up and running we will add an index and ingest some data:
 
 ```bash
 curl --location --request PUT 'http://localhost:9200/products' \
@@ -142,7 +146,7 @@ curl --location --request POST 'http://localhost:9200/products/_doc' \
 
 ## Setup Searchkit
 
-Searchkit compatible with all Instantsearch frameworks. Below is an example using react-instantsearch.
+Searchkit is compatible with all InstantSearch frameworks. Below is an example using react-instantsearch.
 
 ```tsx
 import Searchkit from "searchkit"
@@ -195,11 +199,11 @@ const App = () => (
 }
 ```
 
-follow along with the [Getting Started](https://www.searchkit.co/docs/getting-started/with-react) guide.
+Follow along with the [Getting Started](https://www.searchkit.co/docs/getting-started/with-react) guide.
 
 ## Hide Elasticsearch from the browser
 
-Searchkit Node API allows you to proxy requests to Elasticsearch from the browser. This is useful if you want to hide Elasticsearch from the browser, or if you want to add user permission filters to the query.
+The Searchkit Node API allows you to proxy requests to Elasticsearch from the browser. This is useful if you want to hide Elasticsearch from the browser, or if you want to add user permission filters to the query.
 
 * [Searchkit with Next.js Functions](https://www.searchkit.co/docs/proxy-elasticsearch/with-next-js)
 * [Searchkit with Cloudflare Workers](https://www.searchkit.co/docs/proxy-elasticsearch/with-cloudflare-workers)
@@ -207,7 +211,7 @@ Searchkit Node API allows you to proxy requests to Elasticsearch from the browse
 
 ## Query Customisation
 
-Searchkit has an out the box query builder, but you can also customise the query by passing a getQuery function to the apiClient.
+Searchkit has an out the box query builder, but you can also customise the query by passing a `getQuery` function to the `apiClient`.
 
 ```ts
 const results = await apiClient.handleRequest(req.body, {
@@ -291,7 +295,7 @@ You can apply this at `beforeSearch` and `afterSearch`.
   });
   ```
 
-read more in the api docs [here](https://www.searchkit.co/docs/api-documentation/searchkit#requestoptions-hooks).
+Read more in the [api docs](https://www.searchkit.co/docs/api-documentation/searchkit#requestoptions-hooks).
 
 ## Query Rules
 
@@ -327,7 +331,7 @@ Below is an example of a query rule that boosts results for movies with Dan Aykr
 
 ```
 
-read more at [Query Rules](https://www.searchkit.co/docs/query-rules) docs.
+Read more in the [Query Rules docs](https://www.searchkit.co/docs/query-rules).
 
 ### NPM Packages
 * Searchkit [Documentation](https://www.searchkit.co/docs/api-documentation/searchkit)
@@ -340,20 +344,20 @@ read more at [Query Rules](https://www.searchkit.co/docs/query-rules) docs.
 
 Searchkit proxies requests to Elasticsearch.
 
-Searchkit offers both options, either perform the search directly from the browser, or use the Searchkit API to proxy requests to Elasticsearch. Directly from the browser offers great developer experience & prototyping. Once you are ready to deploy, you can use the Searchkit API to proxy requests to Elasticsearch.
+Searchkit allows you to either perform the search directly from the browser, or use the Searchkit API to proxy requests to Elasticsearch. Directly from the browser offers a great developer experience & faster prototyping. Once you are ready to deploy, you can use the Searchkit API to proxy requests to Elasticsearch.
 
 **Q: Do I need to use React?**
 
-You can use React, React Native, Vue, Angular. You dont even need to use a frontend framework, you can use plain Javascript and HTML with instantsearch.js widgets.
+You can use React, React Native, Vue, or Angular. You don't even need to use a frontend framework, you can use plain Javascript and HTML with instantsearch.js widgets.
 
-**Q: Which version of Elasticsearch is supported?**
+**Q: Which versions of Elasticsearch and OpenSearch are supported?**
 
-Searchkit is compatible with Elasticsearch 7.0 and above + Opensearch 2.0 and above.
+Searchkit is compatible with Elasticsearch 7.0 and above as well as OpenSearch 2.0 and above.
 
 **Q: Do you support Android and iOS?**
 
-Potentially. Searchkit API mimics the Algolia API, so it should be possible to use the Algolia Instantsearch client with Searchkit API with a few tweaks. If you are interested in this, please let us know.
+Potentially. The Searchkit API mimics the Algolia API, so it should be possible to use the Algolia Instantsearch client with the Searchkit API with a few tweaks. If you are interested in this, please let us know.
 
 **Q: Why would I use Searchkit instead of Algolia?**
 
-Elasticsearch has alot of advantages over Algolia. You might want to use Elasticsearch as a cheaper alternative to Algolia, especially if you have a large dataset. You might want to run Elasticsearch on your own infrastructure, or have greater control over the query relevance. 
+Elasticsearch has a lot of advantages over Algolia. You might want to use Elasticsearch as a cheaper alternative to Algolia, especially if you have a large dataset. You might want to run Elasticsearch on your own infrastructure, or have greater control over the query relevance. 
