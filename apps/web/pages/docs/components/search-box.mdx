@@ -10,28 +10,28 @@ The search box widget is used to let the user perform a text-based query.
 
 Configure the `search_attributes` to include the fields you want to search on.
 
-he search attributes define what Elasticsearch fields should be searched when a user performs a search.
+The search attributes define what Elasticsearch fields should be searched when a user performs a search.
 
 The search attributes can be configured as follows:
 
 ```js
-{ 
+{
   search_settings: {
     search_attributes: [
-      "description", 
-      "actors", 
-      { field: "title", weight: 3 }, 
+      "description",
+      "actors",
+      { field: "title", weight: 3 },
       "released.year"
     ]
   }
 }
 ```
 
-The following configuration will search the `description`, `actors` and an object field `released.year` fields with the default weight of 1. The `title` field will be weighted 3 times more than the `actors` field.
+The following configuration will search the `description`, `actors` fields and an object field `released.year` with the default weight of 1. The `title` field will be weighted 3 times more than the `actors` field.
 
 ### Example: Adjusting the organic query
 
-Out the box, Searchkit provides a Elasticsearch query that is designed to work well for most search use cases. However, you may want to customise the query to improve the relevance of the search results.
+Out of the box, Searchkit provides an Elasticsearch query that is designed to work well for most search use cases. However, you may want to customise the query to improve the relevance of the search results.
 
 This example shows how to use the `getQuery` function to customise the query for a given request.
 
@@ -52,9 +52,9 @@ const results = await apiClient.handleRequest(req.body, {
 });
 ```
 
-### Example: Vector Search 
+### Example: Vector Search
 
-The KNN Search is a special type of search that is designed to find similar items based on a vector field. 
+The KNN Search is a special type of search that is designed to find similar items based on a vector field.
 
 ```ts
   const results = await client.handleRequest(req.body, {
@@ -64,7 +64,7 @@ The KNN Search is a special type of search that is designed to find similar item
         k: 10,
         num_candidates: 100,
         // supported in latest version of Elasticsearch
-        query_vector_builder: { 
+        query_vector_builder: {
           text_embedding: {
             model_id: 'msmarco-distilbert-base-tas-b',
             model_text: query

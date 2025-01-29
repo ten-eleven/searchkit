@@ -270,7 +270,7 @@ const searchClient = Client(sk, {
       k: 10,
       num_candidates: 100,
       // supported in Elasticsearch 8.7+
-      query_vector_builder: { 
+      query_vector_builder: {
         text_embedding: {
           model_id: 'cookie_model',
           model_text: query
@@ -313,7 +313,7 @@ const searchClient = Client(sk, {
 
 ## Refinements
 
-Refinements (or also known as facets) allow your users to narrow down their search results. You can easily add refinements with the many refinement components provided by Instantsearch.
+Refinements (also known as facets) allow your users to narrow down their search results. You can easily add refinements with the many refinement components provided by Instantsearch.
 
 In this example we are going to add a `brand` refinement facet. We will also add a `categories` refinement facet to show how to use a hierarchical facet.
 
@@ -322,7 +322,7 @@ In this example we are going to add a `brand` refinement facet. We will also add
 First you must add the `brand` field to the `search_settings` in Searchkit.
 
 <Callout type="info">
-  The field must be a keyword field in Elasticsearch. By default, Elasticsearch will create a keyword field for each text field. To use, you must specify the field name with the `.keyword` suffix.
+  The field must be a keyword field in Elasticsearch. By default, Elasticsearch will create a keyword field for each text field. To use the keyword field, you must specify the field name with the `.keyword` suffix.
 </Callout>
 
 ```tsx
@@ -360,7 +360,7 @@ const App = () => (
 ![overview](../../../public/docs/getting-started/screen4.png)
 
 ### Show more
-Refinement list will display the top 10 brands by default. You can use the `showMore` prop to show more brands.
+The `RefinementList` will display the top 10 brands by default. You can use the `showMore` prop to show more brands.
 
 ```tsx
 <RefinementList attribute="brand" showMore />
@@ -369,7 +369,7 @@ Refinement list will display the top 10 brands by default. You can use the `show
 ![overview](../../../public/docs/getting-started/screen5.png)
 
 ### Searchable
-Refinement list will also allow you to search for a specific brand.
+The `RefinementList` will also allow you to search for a specific brand.
 
 ```tsx
 <RefinementList attribute="brand" searchable />
@@ -377,13 +377,13 @@ Refinement list will also allow you to search for a specific brand.
 
 ![overview](../../../public/docs/getting-started/screen6.png)
 
-and many more options are available for refinement + components for different types of refinements.
+There are many more options available for refinements as well as other components for different types of refinements.
 
 ### Hierarchical Facet
 
 One of the most common use cases for refinements is to filter by categories. You can use a hierarchical facet to display the categories in a tree structure.
 
-First you must add the `categories` levels to the `search_settings` in Searchkit. 
+First you must add the `categories` levels to the `search_settings` in Searchkit.
 
 ```tsx
   search_settings: {
@@ -431,7 +431,7 @@ and then you should see the categories in a tree structure.
 
 ![overview](../../../public/docs/getting-started/screen7.png)
 
-### Other refinement Components
+### Other Refinement Components
 
 There are many other refinement components available in Instantsearch. You can find the full list of refinement components [here](/docs/components/refinements/refinement-list).
 
@@ -442,9 +442,9 @@ Searchkit supports nested fields for refinements. Read more about nested fields 
 ```tsx
 {
   facet_attributes: [
-    { 
-      attribute: 'marketplace.supplier', 
-      field: 'supplier.keyword', 
+    {
+      attribute: 'marketplace.supplier',
+      field: 'supplier.keyword',
       type: 'string',
       nestedPath: 'marketplace'
     }
@@ -452,7 +452,7 @@ Searchkit supports nested fields for refinements. Read more about nested fields 
 }
 ```
 
-### Numeric based Refinement
+### Numeric Based Refinement
 
 Numeric based refinements are useful if you want to filter by price or other numeric values.
 
@@ -504,11 +504,11 @@ const App = () => (
 );
 ```
 
-Then you should see a range input to adjust from and to pricing.
+Now you should see a range input to adjust from and to pricing.
 
 ## Filter Attributes
 
-Filter attributes are attributes that are used to filter the search results. 
+Filter attributes are attributes that are used to filter the search results.
 
 Filters are useful for fields that you do not want facets for, but you want to be able to filter by.
 
@@ -604,7 +604,7 @@ To illustrate their use, we will add a query rule that will boost the results fo
 
 Add a query rule to Searchkit `search_settings`
 
-When the customer types in "cheap tvs", the query rule will be applied and the results will be filtered to be televisions and price range between 0 to 500, and the results for the brand LG will be boosted.
+When the customer types in "cheap tvs", the query rule will be applied and the results will be filtered to televisions with a price range between 0 to 500, and the results for the brand LG will be boosted.
 
 ```tsx
   search_settings: {
@@ -617,7 +617,7 @@ When the customer types in "cheap tvs", the query rule will be applied and the r
             { // true when the query is "cheap tvs"
               context: 'query',
               value: 'cheap tvs',
-              match_type: 'exact' 
+              match_type: 'exact'
             }
           ]
         ],
@@ -647,7 +647,7 @@ When the customer types in "cheap tvs", the query rule will be applied and the r
 
 Another example of query rules is to show different facets depending on the query or filters.
 
-When a customer selects TV category, we will display the brand facet. 
+When a customer selects the TV category, we will display the brand facet.
 
 ```tsx
   search_settings: {
@@ -700,7 +700,7 @@ When a customer selects TV category, we will display the brand facet.
   }
 ```
 
-on the frontend, you need to use the `DynamicWidgets` component to control which facets are displayed, based on the query rules.
+On the frontend, you need to use the `DynamicWidgets` component to control which facets are displayed, based on the query rules.
 
 ```tsx
 import { DynamicWidgets } from 'react-instantsearch'
@@ -731,7 +731,7 @@ import { DynamicWidgets } from 'react-instantsearch'
 
 Another example of query rules is to display a banner based on the query.
 
-This could be used to display a banner with more TV info when the customer selects the TV category. 
+This could be used to display a banner with more TV info when the customer selects the TV category.
 
 ```tsx
   search_settings: {
@@ -767,7 +767,7 @@ This could be used to display a banner with more TV info when the customer selec
   }
 ```
 
-on the frontend, you use the `useQueryRules` hook to display the banner.
+On the frontend, you use the `useQueryRules` hook to display the banner.
 
 ```tsx
 import { useQueryRules } from 'react-instantsearch'
@@ -802,14 +802,14 @@ const App = () => (
 
 ![overview](../../../public/docs/getting-started/screen11.png)
 
-and the banner will be displayed when the customer selects the TV category.
+Now the banner will be displayed when the customer selects the TV category.
 
 ### Query Rules Next Steps
 
 Query rules are super amazing! Read more about them in [Query Rules](/docs/query-rules).
 
 #### More Conditions not covered in this guide
-* [Context](/docs/query-rules/conditions/context) - Activate certain actions with context based on the user (segments, location, a/b experiment etc)
+* [Context](/docs/query-rules/conditions/context) - Activate certain actions with context based on the user (segments, location, a/b experiments, etc)
 
 #### More Actions not covered in this guide
 * [Pin Results](/docs/query-rules/actions/pin-result) - Pin certain results to the top, regardless of the ranking. This is useful if you want to show a specific product in the search results.

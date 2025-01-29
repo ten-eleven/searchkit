@@ -8,7 +8,7 @@ Snippet is a widget that displays highlighted attributes from a hit. It is commo
 
 ## Differences between highlighting and snippets
 
-Highlighting and snippets are very similar. The main difference is that highlighting is returns the whole field value, highlighting the matches while snippets returns a part of the field value, highlighting the matches.
+Highlighting and snippets are very similar. The main difference is that highlighting returns the whole field value, highlighting the matches while snippets return a part of the field value, highlighting the matches.
 
 Highlighting would be useful for short value fields like title.
 
@@ -16,20 +16,20 @@ Snippets would be useful for long value fields like description.
 
 ## Setup
 
-The following document indexed in Elasticsearch:
+Index the following document into Elasticsearch:
 
 ```json
 {
   "brand": "Apple",
   "product": "Macbook Pro 14",
   "in_stock": true,
-  "shipping": 10 
+  "shipping": 10
 }
 ```
 
 ## Searchkit Setup
 
-Within `highlight_attributes` in `search_settings`:
+Within `snippet_attributes` in `search_settings`:
 
 ```ts
 {
