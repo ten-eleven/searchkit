@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@searchkit/api": "*",
-    "express": "4.18.1",
+    "express": "4.19.2",
     "isomorphic-unfetch": "^4.0.2",
     "searchkit": "*"
   }
