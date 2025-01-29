@@ -17,7 +17,7 @@
     "algoliasearch": "^4.14.2",
     "autoprefixer": "^10.4.12",
     "instantsearch.css": "^8.0.0",
-    "next": "^13.2.4",
+    "next": "^14.2.4",
     "next-sitemap": "^3.1.32",
     "nextra": "^2.13.2",
     "nextra-theme-docs": "^2.13.2",
