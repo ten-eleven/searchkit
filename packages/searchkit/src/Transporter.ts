@@ -67,28 +67,25 @@ export class ESTransporter implements Transporter {
       }
 
       if (responses.status >= 500) {
-        console.error(JSON.stringify(responses))
-        throw new Error(
+        console.error(
           'Elasticsearch Internal Error: Check your elasticsearch instance to make sure it can recieve requests.'
         )
+        throw new Error(JSON.stringify(responses))
       } else if (responses.status === 401) {
-        console.error(JSON.stringify(responses))
-        throw new Error(
+        console.error(
           'Cannot connect to Elasticsearch. Check your connection host and auth details (username/password or API Key required). You can also provide a custom Elasticsearch transporter to the API Client. See https://www.searchkit.co/docs/guides/setup-elasticsearch#connecting-with-usernamepassword for more details.'
         )
+        throw new Error(JSON.stringify(responses))
       } else if (responses.responses?.[0]?.status === 403) {
-        console.error(JSON.stringify(responses))
-        throw new Error(
+        console.error(
           'Auth Error: You do not have permission to access this index. Check you are calling the right index (specified in frontend) and your API Key permissions has access to the index.'
         )
+        throw new Error(JSON.stringify(responses))
       } else if (responses.status === 404 || responses.responses?.[0]?.status === 404) {
-        console.error(JSON.stringify(responses))
-        throw new Error(
-          'Elasticsearch index not found. Check your index name and make sure it exists.'
-        )
+        console.error('Elasticsearch index not found. Check your index name and make sure it exists.')
+        throw new Error(JSON.stringify(responses))
       } else if (responses.status === 400 || responses.responses?.[0]?.status === 400) {
-        console.error(JSON.stringify(responses))
-        throw new Error(
+        console.error(
           `Elasticsearch Bad Request.
 
           1. Check your query and make sure it is valid.
@@ -96,6 +93,7 @@ export class ESTransporter implements Transporter {
           3. Turn on debug mode to see the Elasticsearch query and the error response.
           `
         )
+        throw new Error(JSON.stringify(responses))
       }
       return responses.responses
     } catch (error) {

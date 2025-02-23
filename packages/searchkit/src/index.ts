@@ -21,18 +21,13 @@ export default class Searchkit {
   }
 
   private async performSearch(requests: SearchRequest[]) {
-    try {
-      if (this.settings.debug) {
-        console.log('Performing search with requests:')
-        console.log('POST /_msearch')
-        console.log(createElasticsearchQueryFromRequest(requests))
-      }
-      const responses = await this.transporter.msearch(requests)
-      return responses
-    } catch (err) {
-      console.error(err)
-      return []
+    if (this.settings.debug) {
+      console.log('Performing search with requests:')
+      console.log('POST /_msearch')
+      console.log(createElasticsearchQueryFromRequest(requests))
     }
+    const responses = await this.transporter.msearch(requests)
+    return responses
   }
 
   async handleInstantSearchRequests(

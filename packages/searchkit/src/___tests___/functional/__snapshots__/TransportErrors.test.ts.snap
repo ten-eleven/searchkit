@@ -1,16 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Transport Errors 400 error 1`] = `
-"Elasticsearch Bad Request.
+exports[`Transport Errors 400 error 1`] = `"{"error":{"root_cause":[{"type":"parsing_exception","reason":"[bla] query malformed, no start_object after query name","line":1,"col":46}],"type":"x_content_parse_exception","reason":"[1:46] [bool] failed to parse field [filter]","caused_by":{"type":"parsing_exception","reason":"[bla] query malformed, no start_object after query name","line":1,"col":46}},"status":400}"`;
 
-          1. Check your query and make sure it is valid.
-          2. Check the field mapping. See documentation to make sure you are using text types for searching and keyword fields for faceting
-          3. Turn on debug mode to see the Elasticsearch query and the error response.
-          "
-`;
+exports[`Transport Errors 401 error 1`] = `"{"error":{"root_cause":[{"type":"security_exception","reason":"unable to authenticate with provided credentials and anonymous access is not allowed for this request","additional_unsuccessful_credentials":"API key: Input byte array has incorrect ending byte at 60","header":{"WWW-Authenticate":["Basic realm=\\"security\\" charset=\\"UTF-8\\"","Bearer realm=\\"security\\"","ApiKey"]}}],"type":"security_exception","reason":"unable to authenticate with provided credentials and anonymous access is not allowed for this request","additional_unsuccessful_credentials":"API key: Input byte array has incorrect ending byte at 60","header":{"WWW-Authenticate":["Basic realm=\\"security\\" charset=\\"UTF-8\\"","Bearer realm=\\"security\\"","ApiKey"]}},"status":401}"`;
 
-exports[`Transport Errors 401 error 1`] = `"Cannot connect to Elasticsearch. Check your connection host and auth details (username/password or API Key required). You can also provide a custom Elasticsearch transporter to the API Client. See https://www.searchkit.co/docs/guides/setup-elasticsearch#connecting-with-usernamepassword for more details."`;
+exports[`Transport Errors 403 error 1`] = `"{"took":1,"responses":[{"error":{"root_cause":[{"type":"security_exception","reason":"action [indices:data/read/search] is unauthorized for API key id [Mh4zEYUBrIyUUg3_BzSy] of user [1506416774] on indices [my-exampjje-movies], this action is granted by the index privileges [read,all]"}],"type":"security_exception","reason":"action [indices:data/read/search] is unauthorized for API key id [Mh4zEYUBrIyUUg3_BzSy] of user [1506416774] on indices [my-exampjje-movies], this action is granted by the index privileges [read,all]"},"status":403}]}"`;
 
-exports[`Transport Errors 403 error 1`] = `"Auth Error: You do not have permission to access this index. Check you are calling the right index (specified in frontend) and your API Key permissions has access to the index."`;
-
-exports[`Transport Errors 500 error 1`] = `"Elasticsearch Internal Error: Check your elasticsearch instance to make sure it can recieve requests."`;
+exports[`Transport Errors 500 error 1`] = `"{"error":[{"error":{"root_cause":[{"type":"internal_server_error","reason":"Elasticsearch Internal Error: Check your elasticsearch instance to make sure it can recieve requests."}],"type":"internal_server_error","reason":"Elasticsearch Internal Error: Check your elasticsearch instance to make sure it can recieve requests."}}],"status":500}"`;

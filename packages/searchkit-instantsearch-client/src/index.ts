@@ -42,38 +42,33 @@ class InstantSearchElasticsearchAdapter {
   }
 
   public async search(instantsearchRequests: readonly MultipleQueriesQuery[]): Promise<any> {
-    try {
-      const key = JSON.stringify(instantsearchRequests)
-      const cacheValue = this.cache[key]
-      if (cacheValue) {
-        return cacheValue
-      }
+    const key = JSON.stringify(instantsearchRequests)
+    const cacheValue = this.cache[key]
+    if (cacheValue) {
+      return cacheValue
+    }
 
-      if (isSearchkit(this.config)) {
-        const results = await this.config.handleInstantSearchRequests(
-          instantsearchRequests,
-          this.requestOptions
-        )
-        this.cache[key] = results
-        return results
-      }
-
-      const response = await fetch(this.config.url, {
-        body: JSON.stringify(instantsearchRequests),
-        headers: {
-          'Content-Type': 'application/json',
-          ...this.getHeaders()
-        },
-        method: 'POST'
-      })
-
-      const results = await response.json()
+    if (isSearchkit(this.config)) {
+      const results = await this.config.handleInstantSearchRequests(
+        instantsearchRequests,
+        this.requestOptions
+      )
       this.cache[key] = results
       return results
-    } catch (e) {
-      console.error(e)
-      return []
     }
+
+    const response = await fetch(this.config.url, {
+      body: JSON.stringify(instantsearchRequests),
+      headers: {
+        'Content-Type': 'application/json',
+        ...this.getHeaders()
+      },
+      method: 'POST'
+    })
+
+    const results = await response.json()
+    this.cache[key] = results
+    return results
   }
 
   public async searchForFacetValues(
